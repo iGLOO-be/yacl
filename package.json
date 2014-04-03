@@ -1,0 +1,22 @@
+{
+  "name": "config-loader",
+  "version": "0.0.1",
+  "main": "lib/config",
+  "dependencies": {
+    "async": "^0.6.2",
+    "lodash": "^2.4.1",
+    "config-templator": "0.0.7",
+    "coffee-script": "^1.7.1",
+    "extend": "^1.2.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "matchdep": "^0.3.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "^0.10.1",
+    "grunt-coffeelint": "0.0.8",
+    "grunt-mocha-test": "^0.10.0",
+    "grunt-contrib-jshint": "^0.10.0"
+  }
+}

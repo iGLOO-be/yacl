@@ -1,0 +1,7 @@
+/examples
+/src
+/test
+.gitignore
+.jshintrc
+Gruntfile.js
+coverage.html
