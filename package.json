@@ -17,6 +17,7 @@
     "grunt-contrib-coffee": "^0.10.1",
     "grunt-coffeelint": "0.0.8",
     "grunt-mocha-test": "^0.10.0",
-    "grunt-contrib-jshint": "^0.10.0"
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-release": "^0.7.0"
   }
 }
