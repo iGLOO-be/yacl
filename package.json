@@ -29,7 +29,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "test_lib/configTest"
+    "test": "grunt test"
   },
   "author": "iGLOO studio",
   "license": "ISC",
