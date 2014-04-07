@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/iGLOO-be/config-loader.svg)](https://travis-ci.org/iGLOO-be/config-loader)
-
-# Config-loader
+# Config-loader [![Build Status](https://travis-ci.org/iGLOO-be/config-loader.svg)](https://travis-ci.org/iGLOO-be/config-loader)
 A loader of config given an environment.
 By default it will load the 'default' configuration and by specifying the environment the default configuration can have some property overriden by the environment configuration.
 
@@ -37,7 +35,7 @@ config.start(function (err) {
 # License
 ISC
 ```
-Copyright (C) 2014 iGLOO / Woobie S.P.R.L. (Loïc Mahieu loic@igloo.be)
+Copyright (C) 2014 [iGLOO / Woobie S.P.R.L.][igloo] [(Loïc Mahieu loic@igloo.be)][loicMahieu]
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -51,3 +49,6 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
 OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ```
+
+ [igloo]: http://www.igloo.be
+ [loicMahieu]: https://github.com/LoicMahieu
