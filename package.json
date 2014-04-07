@@ -18,6 +18,35 @@
     "grunt-coffeelint": "0.0.8",
     "grunt-mocha-test": "^0.10.0",
     "grunt-contrib-jshint": "^0.10.0",
-    "grunt-release": "^0.7.0"
+    "grunt-release": "^0.7.0",
+    "blanket": "^1.1.6",
+    "expect.js": "^0.3.1",
+    "travis-cov": "^0.2.5"
+  },
+  "description": "load config from a given environment",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test_lib/configTest"
+  },
+  "author": "iGLOO webstudio",
+  "license": "ISC",
+  "keywords": [
+    "config",
+    "configuration",
+    "loader",
+    "development",
+    "production",
+    "default"
+  ],
+  "config": {
+    "blanket": {
+      "pattern": "lib/**/*.js"
+    },
+    "travis-cov": {
+      "threshold": 70
+    }
   }
 }

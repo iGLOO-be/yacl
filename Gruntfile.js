@@ -64,21 +64,23 @@ module.exports = function (grunt) {
       test: {
         options: {
           reporter: 'list',
-          require: 'blanket',
-          timeout: 30000
+          require: 'blanket'
         },
-        src: ['test/**/*.js']
+        src: ['test_lib/**/*.js']
       },
-      coverage: {
+      'html-cov': {
         options: {
           reporter: 'html-cov',
-          // use the quiet flag to suppress the mocha console output
           quiet: true,
-          // specify a destination file to capture the mocha
-          // output (the quiet option does not suppress this)
           captureFile: 'coverage.html'
         },
-        src: ['test/**/*.js']
+        src: ['test_lib/**/*.js']
+      },
+      'travis-cov': {
+        options: {
+          reporter: 'travis-cov'
+        },
+        src: ['test_lib/**/*.js']
       }
     },
     release: {
@@ -90,8 +92,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'compile',
-    'mochaTest',
-    'clean:test'
+    'mochaTest'
+    // 'clean:test'
   ]);
 
   grunt.registerTask('build', 'compile');
@@ -99,7 +101,8 @@ module.exports = function (grunt) {
     'clean:src',
     'copy:src',
     'coffeelint:src',
-    'coffee:src'
+    'coffee:src',
+    'coffee:test'
   ]);
 
   grunt.registerTask('default', [

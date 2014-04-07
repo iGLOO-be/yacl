@@ -1,3 +1,16 @@
+# Copyright (C) <2013> <iGLOO Webstudio/ WOOBIE SPRL>
+
+# Permission to use, copy, modify, and/or distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+# OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+# CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 fs = require 'fs'
 path = require 'path'
@@ -23,12 +36,15 @@ requireConfig = (file, cb) ->
     cb(error)
 
 class Config
+  envs: ['default', 'development']
+
   constructor: (@_supConfig = {}) ->
     @_dirs = []
-    @env = 'development'
+    @env = @envs[1]
     @config = {}
 
   setEnv: (@env) ->
+    @envs[1] = @env
 
   applyConfig: (data) =>
     extend true, @config, data
@@ -61,16 +77,16 @@ class Config
       cb?()
     )
 
-  _readdir: (dir, final) =>
+  _readdir: (dir, cb) =>
     fs.readdir dir, (err, files) =>
-      return final?(err) if err
+      return cb(err) if err
       async.map files, ((file, cb) =>
-        async.map(['default', @env], ((pattern, next) ->
+        async.map(@envs, ((pattern, cb) ->
           if file.indexOf(pattern) == 0
-            requireConfig(dir + '/' + file, next)
+            requireConfig(dir + '/' + file, cb)
           else
-            next()
+            cb()
         ), cb)
-      ), final
+      ), cb
 
 module.exports = Config
