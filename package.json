@@ -2,6 +2,14 @@
   "name": "yacl",
   "version": "0.0.1",
   "main": "lib/config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iGLOO-be/yacl.git"
+  },
+  "homepage": "https://github.com/iGLOO-be/yacl",
+  "bugs": {
+    "url": "https://github.com/iGLOO-be/yacl/issues"
+  },
   "dependencies": {
     "async": "^0.6.2",
     "lodash": "^2.4.1",
