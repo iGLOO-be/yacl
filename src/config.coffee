@@ -1,4 +1,4 @@
-# Copyright (C) <2013> <iGLOO Webstudio/ WOOBIE SPRL>
+# Copyright (C) 2014 iGLOO / Woobie S.P.R.L. (Loïc Mahieu loic@igloo.be)
 
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above

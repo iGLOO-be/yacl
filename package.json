@@ -31,7 +31,7 @@
   "scripts": {
     "test": "test_lib/configTest"
   },
-  "author": "iGLOO webstudio",
+  "author": "iGLOO studio",
   "license": "ISC",
   "keywords": [
     "config",
@@ -43,7 +43,8 @@
   ],
   "config": {
     "blanket": {
-      "pattern": "lib/**/*.js"
+      "pattern": "lib/**/*.js",
+      "data-cover-never": "node_modules"
     },
     "travis-cov": {
       "threshold": 70
