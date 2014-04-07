@@ -1,5 +1,5 @@
 {
-  "name": "config-loader",
+  "name": "yacl",
   "version": "0.0.1",
   "main": "lib/config",
   "dependencies": {
@@ -39,7 +39,9 @@
     "loader",
     "development",
     "production",
-    "default"
+    "default",
+    "yet",
+    "another"
   ],
   "config": {
     "blanket": {

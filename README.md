@@ -1,11 +1,14 @@
-# Config-loader [![Build Status](https://travis-ci.org/iGLOO-be/config-loader.svg)](https://travis-ci.org/iGLOO-be/config-loader)
+# YACL [![Build Status](https://travis-ci.org/iGLOO-be/config-loader.svg)](https://travis-ci.org/iGLOO-be/config-loader)
+Yet Another Config Loader.
 A loader of config given an environment.
 By default it will load the 'default' configuration and by specifying the environment the default configuration can have some property overriden by the environment configuration.
+
+It uses the [config-templator][config-templator] by [LoicMahieu][loicMahieu].
 
 # Getting Started
 
 ```
-npm install --save config-loader
+npm install --save yacl
 ```
 
 ## Usage :
@@ -53,3 +56,4 @@ CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
  [igloo]: http://www.igloo.be
  [loicMahieu]: https://github.com/LoicMahieu
+ [config-templator]: https://github.com/LoicMahieu/config-templator
