@@ -18,12 +18,19 @@ config.addDir( __dirname + '/config');
 config.setEnv('development');
 
 config.start(function (err) {
-    console.log('------------------- ' + env);
     if(err)
       throw new Error(err)
-    console.log(config.test);
+    console.log(config.toJSON());
 });
 ```
+
+## Methods :
+
+- *addDir*: add a directory that contains the environment files
+- *setEnv*: it takes a string as argument and set it as its environment by default the environment is 'default' or 'development' if it exists.
+- *start*: merge the configuration file into the config object.
+- *toJSON*: get the config into JSON format.
+- *applyConfig*: it takes an object as arguments and apply it on the current configuration.
 
 # License
 ISC
