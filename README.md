@@ -36,7 +36,7 @@ config.start(function (err) {
 Licensed under ISC.
 Copyright (C) 2014 [iGLOO / Woobie S.P.R.L.][igloo] [(Loïc Mahieu loic@igloo.be)][loicMahieu]
 ```
-Copyright (C) 2014 [iGLOO / Woobie S.P.R.L.][igloo] [(Loïc Mahieu loic@igloo.be)][loicMahieu]
+Copyright (C) 2014 iGLOO / Woobie S.P.R.L. (Loïc Mahieu loic@igloo.be)
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
