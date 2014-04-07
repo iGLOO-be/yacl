@@ -1,7 +1,9 @@
 /examples
 /src
 /test
+/test_lib
 .gitignore
 .jshintrc
+.travis.yml
 Gruntfile.js
 coverage.html
