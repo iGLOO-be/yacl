@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/iGLOO-be/config-loader.svg)](https://travis-ci.org/iGLOO-be/config-loader)
+
 # Config-loader
 A loader of config given an environment.
 By default it will load the 'default' configuration and by specifying the environment the default configuration can have some property overriden by the environment configuration.
