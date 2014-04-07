@@ -33,7 +33,8 @@ config.start(function (err) {
 - *applyConfig*: it takes an object as arguments and apply it on the current configuration.
 
 # License
-ISC
+Licensed under ISC.
+Copyright (C) 2014 [iGLOO / Woobie S.P.R.L.][igloo] [(Loïc Mahieu loic@igloo.be)][loicMahieu]
 ```
 Copyright (C) 2014 [iGLOO / Woobie S.P.R.L.][igloo] [(Loïc Mahieu loic@igloo.be)][loicMahieu]
 
