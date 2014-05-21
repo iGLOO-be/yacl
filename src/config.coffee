@@ -50,8 +50,8 @@ class Config
     extend true, @config, data
     applyGetter @, @config
 
-  addDir: (dir) ->
-    @_dirs.push dir
+  addDir: (dir, prepend) ->
+    @_dirs[if prepend then 'unshift' else 'push'] dir
     @
 
   start: (cb) =>

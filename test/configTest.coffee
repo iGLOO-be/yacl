@@ -45,6 +45,12 @@ describe 'Add Dir', ->
     expect(config._dirs).to.have.length(1)
     done()
 
+  it 'should add a dir with prepend true', (done) ->
+    config.addDir configDir + '/foo', true
+    expect(config._dirs).to.have.length(2)
+    expect(config._dirs[0]).to.eql(configDir + '/foo')
+    done()
+
   it 'should have an error when calling addDir', (done) ->
     config.addDir configDir + '/foo'
     config.start (err) ->
