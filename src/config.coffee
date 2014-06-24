@@ -31,9 +31,9 @@ applyGetter = (target, source) ->
 requireConfig = (file, cb) ->
   try
     req = require file
-    cb(null, req)
   catch error
     cb(error)
+  cb(null, req)
 
 class Config
   envs: ['default', 'development']
