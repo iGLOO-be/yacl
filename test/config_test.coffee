@@ -107,22 +107,21 @@ describe 'Set Env', ->
       expect(config.val).to.eql('production')
       done()
 
-  describe 'Get config', ->
-    it 'should return a JSON', (done) ->
-      config.setEnv 'production'
-      config.start (err) ->
-        if err
-          expect().fail(err)
-          done()
-        expect(config.toJSON()).to.be.an('object')
+describe 'Get config', ->
+  it 'should return a JSON', (done) ->
+    config.setEnv 'production'
+    config.start (err) ->
+      if err
+        expect().fail(err)
         done()
+      expect(config.toJSON()).to.be.an('object')
+      done()
 
-    it 'should return a JSON equals to production.js', (done) ->
-      config.setEnv 'production'
-      config.start (err) ->
-        if err
-          expect().fail(err)
-          done()
-        expect(config.toJSON()).to.eql(require(configDir + '/production'))
+  it 'should return a JSON equals to production.js', (done) ->
+    config.setEnv 'production'
+    config.start (err) ->
+      if err
+        expect().fail(err)
         done()
-
+      expect(config.toJSON()).to.eql(require(configDir + '/production'))
+      done()

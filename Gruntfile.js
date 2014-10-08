@@ -63,7 +63,7 @@ module.exports = function (grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'list',
+          reporter: 'spec',
           require: 'blanket'
         },
         src: ['test_lib/**/*.js']
@@ -91,9 +91,9 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('test', [
+    'clean',
     'compile',
     'mochaTest'
-    // 'clean:test'
   ]);
 
   grunt.registerTask('build', 'compile');
