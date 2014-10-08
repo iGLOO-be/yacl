@@ -65,6 +65,33 @@ describe 'Add Dir', ->
       expect(err).to.be.an(Error)
       done()
 
+  it 'should start without callback', (done) ->
+    config = new ConfigLoader()
+    config.addDir configDir
+    config.start()
+
+    setTimeout done, 10
+
+  it 'should start without callback and console.error if error', (done) ->
+    config = new ConfigLoader()
+    config.addDir configDir
+    config.setEnv 'syntaxerror'
+    config.start()
+
+    trigged = false
+    _error = console.error
+    console.error = ->
+      trigged = true
+      # Do not ouput error
+      # _error.apply @, arguments
+      console.error = _error
+
+    setTimeout ->
+      expect(trigged).to.be(true)
+
+      done()
+    , 10
+
 describe 'Set Env', ->
   beforeEach () ->
     config = new ConfigLoader()
