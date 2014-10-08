@@ -38,6 +38,9 @@ requireConfig = (file, cb) ->
 
   cb(err, req)
 
+isFileForEnv = (env, file) ->
+  path.basename(file, path.extname(file)) == env
+
 class Config
   constructor: (@_supConfig = {}) ->
     @envs = ['default', 'development']
@@ -82,18 +85,17 @@ class Config
       cb()
 
   _readdir: (dir, cb) =>
-    readFile = (file, cb) =>
-      async.map(@envs, readEnv.bind(@, file), cb)
+    readFile = (files, env, cb) ->
+      file = _.find files, isFileForEnv.bind(null, env)
 
-    readEnv = (file, env, cb) ->
-      if file.indexOf(env) == 0
+      if file
         requireConfig(dir + '/' + file, cb)
       else
         cb()
 
     async.waterfall [
       (cb) -> fs.readdir dir, cb
-      (files, cb) -> async.map files, readFile, cb
+      (files, cb) => async.map _.uniq(@envs), readFile.bind(null, files), cb
     ], cb
 
 module.exports = Config

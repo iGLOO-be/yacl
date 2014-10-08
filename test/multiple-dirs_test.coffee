@@ -1,8 +1,5 @@
-blanket = require('blanket')(
-  pattern: 'lib/config.js',
-  'travis-cov':
-    threshold: 70
-)
+
+require './coverage'
 
 expect = require 'expect.js'
 
@@ -40,6 +37,20 @@ describe 'Multiple Directories', ->
     config = new ConfigLoader()
     config.setEnv 'production'
     config.addDir configDir + '/config2'
+    config.addDir configDir + '/config1'
+    config.start (err) ->
+      if err
+        expect().fail(err)
+        return done()
+      expect(config).to.have.key('val')
+      expect(config.val).to.eql('production-config1')
+      done()
+
+  it 'should load dirs in order and respect env', (done) ->
+    config = new ConfigLoader()
+    config.setEnv 'production'
+    config.addDir configDir + '/config2'
+    config.addDir configDir + '/config3'
     config.addDir configDir + '/config1'
     config.start (err) ->
       if err
