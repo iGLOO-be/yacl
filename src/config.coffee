@@ -64,8 +64,11 @@ class Config
     templator.flatten @config
 
   _loadConfig: (cb) ->
-    async.map @_dirs, @_readdir, ((err, configs) =>
-      return cb?(err) if err
+    cb = cb or (err) ->
+      console.error err if err
+
+    async.map @_dirs, @_readdir, (err, configs) =>
+      return cb(err) if err
 
       _configs = []
       for _conf in configs
@@ -76,19 +79,21 @@ class Config
 
       _.flatten(_configs).forEach @applyConfig
 
-      cb?()
-    )
+      cb()
 
   _readdir: (dir, cb) =>
-    fs.readdir dir, (err, files) =>
-      return cb(err) if err
-      async.map files, ((file, cb) =>
-        async.map(@envs, ((pattern, cb) ->
-          if file.indexOf(pattern) == 0
-            requireConfig(dir + '/' + file, cb)
-          else
-            cb()
-        ), cb)
-      ), cb
+    readFile = (file, cb) =>
+      async.map(@envs, readEnv.bind(@, file), cb)
+
+    readEnv = (file, env, cb) ->
+      if file.indexOf(env) == 0
+        requireConfig(dir + '/' + file, cb)
+      else
+        cb()
+
+    async.waterfall [
+      (cb) -> fs.readdir dir, cb
+      (files, cb) -> async.map files, readFile, cb
+    ], cb
 
 module.exports = Config
