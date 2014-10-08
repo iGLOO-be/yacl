@@ -42,7 +42,7 @@ module.exports = function (grunt) {
       test: {
         expand: true,
         cwd: 'test',
-        src: ['**/*.coffee'],
+        src: ['*.coffee'],
         dest: 'test_lib',
         ext: '.js'
       }
@@ -58,6 +58,12 @@ module.exports = function (grunt) {
         cwd: 'src',
         src: ['**/*.js'],
         dest: 'lib'
+      },
+      test: {
+        expand: true,
+        cwd: 'test',
+        src: ['fixtures/**/*'],
+        dest: 'test_lib'
       }
     },
     mochaTest: {
@@ -93,6 +99,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean',
     'compile',
+    'copy:test',
     'mochaTest'
   ]);
 

@@ -4,6 +4,8 @@ blanket = require('blanket')(
     threshold: 70
 )
 
+extend = require 'extend'
+
 expect = require 'expect.js'
 
 ConfigLoader = require '../lib/config'
@@ -52,14 +54,16 @@ describe 'Add Dir', ->
     done()
 
   it 'should have an error when calling addDir', (done) ->
+    config = new ConfigLoader()
     config.addDir configDir + '/foo'
     config.start (err) ->
       expect(err).to.be.an(Error)
       done()
 
-  it 'should have an error when calling a config that does not exists', (done) ->
-    config.addDir __dirname
-    config.setEnv 'error'
+  it 'should have an error when calling a invalid config', (done) ->
+    config = new ConfigLoader()
+    config.addDir configDir
+    config.setEnv 'syntaxerror'
     config.start (err) ->
       expect(err).to.be.an(Error)
       done()
@@ -73,8 +77,13 @@ describe 'Set Env', ->
     config.start (err) ->
       if err
         expect().fail(err)
-        done()
-      expect(config.config).to.eql(require(configDir + '/default'))
+        return done()
+      expect(config.config).to.eql(extend(
+        true,
+        {}
+        require(configDir + '/default'),
+        require(configDir + '/development')
+      ))
       done()
 
   it 'should set a default environment', (done) ->
@@ -82,7 +91,7 @@ describe 'Set Env', ->
     config.start (err) ->
       if err
         expect().fail(err)
-        done()
+        return done()
       expect(config).to.have.key('val')
       expect(config.val).to.eql('default')
       done()
@@ -92,7 +101,7 @@ describe 'Set Env', ->
     config.start (err) ->
       if err
         expect().fail(err)
-        done()
+        return done()
       expect(config).to.have.key('val')
       expect(config.val).to.eql('development')
       done()
@@ -102,7 +111,7 @@ describe 'Set Env', ->
     config.start (err) ->
       if err
         expect().fail(err)
-        done()
+        return done()
       expect(config).to.have.key('val')
       expect(config.val).to.eql('production')
       done()
@@ -113,7 +122,7 @@ describe 'Get config', ->
     config.start (err) ->
       if err
         expect().fail(err)
-        done()
+        return done()
       expect(config.toJSON()).to.be.an('object')
       done()
 
@@ -122,6 +131,6 @@ describe 'Get config', ->
     config.start (err) ->
       if err
         expect().fail(err)
-        done()
+        return done()
       expect(config.toJSON()).to.eql(require(configDir + '/production'))
       done()

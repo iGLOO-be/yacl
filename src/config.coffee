@@ -29,16 +29,18 @@ applyGetter = (target, source) ->
       enumerable : true
 
 requireConfig = (file, cb) ->
+  err = null
+
   try
     req = require file
   catch error
-    cb(error)
-  cb(null, req)
+    err = error
+
+  cb(err, req)
 
 class Config
-  envs: ['default', 'development']
-
   constructor: (@_supConfig = {}) ->
+    @envs = ['default', 'development']
     @_dirs = []
     @env = @envs[1]
     @config = {}
