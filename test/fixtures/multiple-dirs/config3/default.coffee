@@ -1,5 +1,5 @@
 
 module.exports =
-  val: 'default-config2'
-  test: 'default-config2 env should display this'
-  id: 'test-config-config2'
+  val: 'default-config3'
+  test: 'default-config3 env should display this'
+  id: 'test-config-config3'

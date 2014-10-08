@@ -52,6 +52,7 @@ describe 'Multiple Directories', ->
     config.addDir configDir + '/config2'
     config.addDir configDir + '/config3'
     config.addDir configDir + '/config1'
+    config.addDir configDir + '/config4'
     config.start (err) ->
       if err
         expect().fail(err)
