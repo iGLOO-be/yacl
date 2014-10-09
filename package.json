@@ -1,6 +1,6 @@
 {
   "name": "yacl",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "lib/config",
   "repository": {
     "type": "git",
