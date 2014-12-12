@@ -29,6 +29,11 @@ config.start(function (err) {
 
 ## Methods :
 
+- *constructor*: `new ConfigLoader([config[, lookup]])`
+  - `config` : default config that have priority to every config files
+  - `lookup` : default: ['default', 'user-default', '{env}', 'user-{env}'] ( `{env}` is replaced by current environment )
+
+
 - *addDir*: add a directory that contains the environment files
 - *setEnv*: it takes a string as argument and set it as its environment by default the environment is 'default' or 'development' if it exists.
 - *start*: merge the configuration file into the config object.
