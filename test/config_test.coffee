@@ -158,3 +158,23 @@ describe 'Get config', ->
         return done()
       expect(config.toJSON()).to.eql(require(configDir + '/production'))
       done()
+
+describe.only 'Overwrite lookup list', ->
+  beforeEach () ->
+    config = new ConfigLoader {}, ['bar', 'bar-{env}']
+    config.addDir configDir
+
+  it 'Can specify lookup list and replace {env}', ->
+    expect(config._envLookup).to.eql(['bar', 'bar-development'])
+
+    config.setEnv('foo')
+    expect(config._envLookup).to.eql(['bar', 'bar-foo'])
+
+  it 'should return a JSON equals to bar.js', (done) ->
+    config.start (err) ->
+      if err
+        expect().fail(err)
+        return done()
+      expect(config.toJSON()).to.eql(require(configDir + '/bar'))
+      done()
+

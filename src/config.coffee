@@ -42,14 +42,17 @@ isFileForEnv = (env, file) ->
   path.basename(file, path.extname(file)) == env
 
 class Config
-  constructor: (@_supConfig = {}) ->
-    @envs = ['default', 'user-default', 'development', 'user-development']
+  constructor: (@_supConfig = {}, @_lookup) ->
+    @_lookup = @_lookup || ['default', 'user-default', '{env}', 'user-{env}']
+    @_envLookup = []
     @_dirs = []
     @config = {}
 
+    @setEnv 'development'
+
   setEnv: (env) ->
-    @envs[2] = env
-    @envs[3] = "user-#{env}"
+    @_envLookup = @_lookup.map (lookup) ->
+      lookup.replace '{env}', env
 
   applyConfig: (data) =>
     extend true, @config, data
@@ -95,7 +98,7 @@ class Config
 
     async.waterfall [
       (cb) -> fs.readdir dir, cb
-      (files, cb) => async.map _.uniq(@envs), readFile.bind(null, files), cb
+      (files, cb) => async.map _.uniq(@_envLookup), readFile.bind(null, files), cb
     ], cb
 
 module.exports = Config
