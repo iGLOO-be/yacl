@@ -43,13 +43,13 @@ isFileForEnv = (env, file) ->
 
 class Config
   constructor: (@_supConfig = {}) ->
-    @envs = ['default', 'development']
+    @envs = ['default', 'user-default', 'development', 'user-development']
     @_dirs = []
-    @env = @envs[1]
     @config = {}
 
-  setEnv: (@env) ->
-    @envs[1] = @env
+  setEnv: (env) ->
+    @envs[2] = env
+    @envs[3] = "user-#{env}"
 
   applyConfig: (data) =>
     extend true, @config, data

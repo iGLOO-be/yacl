@@ -60,3 +60,16 @@ describe 'Multiple Directories', ->
       expect(config).to.have.key('val')
       expect(config.val).to.eql('production-config1')
       done()
+
+  it 'should use user-{env} in priority', (done) ->
+    config = new ConfigLoader()
+    config.setEnv 'production'
+    config.addDir configDir + '/user'
+    config.addDir configDir + '/config1'
+    config.start (err) ->
+      if err
+        expect().fail(err)
+        return done()
+      expect(config).to.have.key('val')
+      expect(config.val).to.eql('production-user')
+      done()
